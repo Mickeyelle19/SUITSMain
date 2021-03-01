@@ -1,0 +1,11 @@
+public class ScienceSamplingProgram 
+{
+     public ScienceSamplingProgram ()
+     {
+          //Class constructor, leave empty
+     } 
+
+     //Rest of the code for this class goes 
+     //below, all methods, variables, 
+     //functions, etc.
+}
