@@ -1,40 +1,39 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SACSUITSMain
+using UnityEngine;
+using UnityEngine.UI;
+public class timer : MonoBehaviour
 {
-    public class NavigationProgram
+    bool timerActive = false;
+    float currentTime;
+    public Text currentTimeText;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        public NavigationProgram()
-        {
-            //Test
-            //Class constructor, leave empty
-        }
-        static void stopWatch()
-        {
-            bool start = true;
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
+        currentTime = 0;
+    }
 
-            while (start == true)
-            {
-                Thread.Sleep(1000);
-                TimeSpan ts = watch.Elapsed;
-                string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                 ts.Hours, ts.Minutes, ts.Seconds,
-                 ts.Milliseconds / 10);
-                Console.WriteLine("Time elapsed: " + elapsedTime);
-            }
-            Console.ReadLine();
-            watch.Stop();
-            start = false;
+    // Update is called once per frame
+    void Update()
+    {
+        if (timerActive == true)
+        {
+            currentTime = currentTime + Time.deltaTime;
         }
+        System.TimeSpan time = System.TimeSpan.FromSeconds(currentTime);
+        currentTimeText.text = "Time Elapsed: " + time.ToString(@"hh\:mm\:ss");
 
-        //Rest of the code for this class goes 
-        //below, all methods, variables, 
-        //functions, etc.
+    }
+
+    public void StartTimer()
+    {
+        timerActive = true;
+    }
+
+    public void StopTimer()
+    {
+        timerActive = false;
+        currentTime = 0;
     }
 }
